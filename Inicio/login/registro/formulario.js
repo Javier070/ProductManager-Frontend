@@ -4,7 +4,7 @@ boton.addEventListener("click", async (event) => {
     await registroUser(); // Llama a la función de registro
 });
 
-
+//comentario prueba
 
 let camposUser = {};
 
