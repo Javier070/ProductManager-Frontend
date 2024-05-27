@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Inventario y Empleados</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .menu-hamburguesa {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .usuario {
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 60px; /* Ajustado para que esté debajo del encabezado */
+            left: 0;
+            background-color: #4CAF50;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 20px;
+            z-index: 999;
+        }
+        .sidenav a {
+            padding: 8px 32px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+        .main {
+            padding: 16px;
+            margin-left: 0;
+            margin-top: 60px; /* Añadir espacio para el encabezado fijo */
+            transition: margin-left 0.5s;
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            transition: margin-left 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="menu-hamburguesa" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="usuario" id="usuario">
+        <!-- Aquí se mostrará el nombre del usuario -->
+    </div>
+</header>
+
+<div id="mySidenav" class="sidenav">
+    <a href="#" onclick="showSection('page1')">Página 1</a>
+    <a href="#" onclick="showSection('page2')">Página 2</a>
+    <a href="#" onclick="showSection('page3')">Página 3</a>
+    <a href="#" onclick="showSection('page4')">Página 4</a>
+    <a href="#" onclick="showSection('page5')">Página 5</a>
+    <a href="#" onclick="showSection('page6')">Página 6</a>
+</div>
+
+<main class="main" id="main">
+    <section id="page1" class="page">
+        <h2>Contenido de la Página 1</h2>
+        <p>Este es el contenido de la página 1.</p>
+    </section>
+    <section id="page2" class="page hidden">
+        <h2>Contenido de la Página 2</h2>
+        <p>Este es el contenido de la página 2.</p>
+    </section>
+    <section id="page3" class="page hidden">
+        <h2>Contenido de la Página 3</h2>
+        <p>Este es el contenido de la página 3.</p>
+    </section>
+    <section id="page4" class="page hidden">
+        <h2>Contenido de la Página 4</h2>
+        <p>Este es el contenido de la página 4.</p>
+    </section>
+    <section id="page5" class="page hidden">
+        <h2>Contenido de la Página 5</h2>
+        <p>Este es el contenido de la página 5.</p>
+    </section>
+    <section id="page6" class="page hidden">
+        <h2>Contenido de la Página 6</h2>
+        <p>Este es el contenido de la página 6.</p>
+    </section>
+</main>
+
+<footer id="footer">
+    <p>&copy; 2024 Gestor de Inventario y Empleados</p>
+</footer>
+
+<script>
+    function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const main = document.getElementById("main");
+        const footer = document.getElementById("footer");
+        if (sidenav.style.width === "250px") {
+            sidenav.style.width = "0";
+            main.style.marginLeft = "0";
+            footer.style.marginLeft = "0";
+            localStorage.setItem('sidenavOpen', 'false');
+        } else {
+            sidenav.style.width = "250px";
+            main.style.marginLeft = "250px";
+            footer.style.marginLeft = "250px";
+            localStorage.setItem('sidenavOpen', 'true');
+        }
+    }
+
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.page');
+        sections.forEach(section => section.classList.add('hidden'));
+
+        const activeSection = document.getElementById(sectionId);
+        activeSection.classList.remove('hidden');
+    }
+
+    function setUser(name) {
+        document.getElementById('usuario').textContent = name;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('sidenavOpen') === 'true') {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("footer").style.marginLeft = "250px";
+        }
+        // Simular la obtención del nombre del usuario (debería reemplazarse con la lógica real de autenticación)
+        const userName = "Juan Pérez";
+        setUser(userName);
+    });
+</script>
+
+</body>
+</html>

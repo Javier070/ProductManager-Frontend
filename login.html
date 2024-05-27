@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formulario.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+          <form method="POST">
+              <div class="formbold-input-flex">
+                <div>
+                    <label for="email" class="formbold-form-label"> Mail </label>
+                    <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="jhon@mail.com"
+                    class="formbold-form-input"
+                    />
+                </div>
+                <div>
+                    <label for="password" class="formbold-form-label"> Password </label>
+                    <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="password"
+                    class="formbold-form-input"
+                    />
+                </div>
+              </div>
+              <button id="btnLogin" class="formbold-btn">
+                  Login
+              </button>
+          </form>
+        </div>
+      </div>
+     <script src="login.js"></script>
+</body>
+</html>
