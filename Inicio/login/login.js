@@ -32,10 +32,13 @@ let loginUser = async () => {
         console.log(responseData);
         alert('Inicio de sesión exitoso: ' + (responseData.token ? 'Token recibido' : ''));
         // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
-         localStorage.setItem('token', responseData.token);
+        localStorage.setItem('token', responseData.token);
+
+        // Redirigir a la nueva página usando una ruta relativa
+        window.location.href = '/menu/menu.html';
     } catch (error) {
         console.error('Error:', error);
         // Muestra el mensaje de error al usuario
-        alert( error.message);
+        alert(error.message);
     }
 };

@@ -1,3 +1,6 @@
+Para cargar la página `page3.html` cuando se presiona el tercer elemento de la barra lateral, puedes modificar la función `loadPage()` para que cargue la página correspondiente según el índice del elemento seleccionado. Aquí tienes el código actualizado para lograrlo:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,6 +17,10 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
         }
         header {
             background-color: #4CAF50;
@@ -38,13 +45,18 @@
             margin-right: 1rem;
             font-weight: bold;
         }
+        .container {
+            display: flex;
+            flex: 1;
+            margin-top: 70px; /* Altura del encabezado */
+        }
         .sidenav {
-            height: 100%;
+            height: calc(100vh - 70px); /* Altura del encabezado */
             width: 0;
             position: fixed;
-            top: 60px; /* Ajustado para que esté debajo del encabezado */
+            top: 70px; /* Ajustado para que esté debajo del encabezado */
             left: 0;
-            background-color: #4CAF50;
+            background-color: #544caf;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 20px;
@@ -61,14 +73,12 @@
         .sidenav a:hover {
             color: #f1f1f1;
         }
-        .main {
+        .main-content {
+            flex: 1;
             padding: 16px;
             margin-left: 0;
-            margin-top: 60px; /* Añadir espacio para el encabezado fijo */
             transition: margin-left 0.5s;
-        }
-        .hidden {
-            display: none;
+            overflow-y: auto;
         }
         footer {
             background-color: #333;
@@ -80,7 +90,66 @@
             bottom: 0;
             transition: margin-left 0.5s;
         }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 140px); /* Ajustar altura al contenido */
+            border: none;
+        }
     </style>
+
+    
+    <script>
+        function toggleNav() {
+            const sidenav = document.getElementById("mySidenav");
+            const mainContent = document.getElementById("main-content");
+            const footer = document.getElementById("footer");
+            if (sidenav.style.width === "250px") {
+                sidenav.style.width = "0";
+                mainContent.style.marginLeft = "0";
+                footer.style.marginLeft = "0";
+                localStorage.setItem('sidenavOpen', 'false');
+            } else {
+                sidenav.style.width = "250px";
+                mainContent.style.marginLeft = "250px";
+                footer.style.marginLeft = "250px";
+                localStorage.setItem('sidenavOpen', 'true');
+            }
+        }
+
+        function setUser(name) {
+            document.getElementById('usuario').textContent = name;
+        }
+
+        function loadPage(page) {
+    if (page === 'page.html') {
+        // Cargar la página 3 directamente
+        document.getElementById('main-content').innerHTML = `<iframe src="page3.html" onload="resizeIframe(this)"></iframe>`;
+    } else if (page === 'page2.html') {
+        // Cargar la página 2 directamente
+        document.getElementById('main-content').innerHTML = `<iframe src="page2.html" onload="resizeIframe(this)"></iframe>`;
+    } else if (page === 'page3.html') {
+        // Cargar la página 3 directamente
+        document.getElementById('main-content').innerHTML = `<iframe src="page3.html" onload="resizeIframe(this)"></iframe>`;
+    } else {
+        // Cargar otras páginas
+        document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
+    }
+}
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('sidenavOpen') === 'true') {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main-content").style.marginLeft = "250px";
+                document.getElementById("footer").style.marginLeft = "250px";
+            }
+            const userName = "Juan Pérez";
+            setUser(userName);
+            loadPage('page1.html'); // Cargar la página 1 por defecto
+        });
+
+       
+    </script>
 </head>
 <body>
 
@@ -88,92 +157,27 @@
     <button class="menu-hamburguesa" onclick="toggleNav()">
         <i class="fas fa-bars"></i>
     </button>
-    <div class="usuario" id="usuario">
-        <!-- Aquí se mostrará el nombre del usuario -->
-    </div>
+    <div class="usuario" id="usuario"></div>
 </header>
 
-<div id="mySidenav" class="sidenav">
-    <a href="#" onclick="showSection('page1')">Página 1</a>
-    <a href="#" onclick="showSection('page2')">Página 2</a>
-    <a href="#" onclick="showSection('page3')">Página 3</a>
-    <a href="#" onclick="showSection('page4')">Página 4</a>
-    <a href="#" onclick="showSection('page5')">Página 5</a>
-    <a href="#" onclick="showSection('page6')">Página 6</a>
-</div>
+<div class="container">
+    <div id="mySidenav" class="sidenav">
+        <a href="#" onclick="loadPage('page1.html')">Página 1</a>
+        <a href="#" onclick="loadPage('page2.html')">Página 2</a>
+        <a href="#" onclick="loadPage('page3.html')">Página 3</a>
+        <a href="#" onclick="loadPage('page4.html')">Página 4</a>
+        <a href="#" onclick="loadPage('page5.html')">Página 5</a>
+        <a href="#" onclick="loadPage('page6.html')">Página 6</a>
+    </div>
 
-<main class="main" id="main">
-    <section id="page1" class="page">
-        <h2>Contenido de la Página 1</h2>
-        <p>Este es el contenido de la página 1.</p>
-    </section>
-    <section id="page2" class="page hidden">
-        <h2>Contenido de la Página 2</h2>
-        <p>Este es el contenido de la página 2.</p>
-    </section>
-    <section id="page3" class="page hidden">
-        <h2>Contenido de la Página 3</h2>
-        <p>Este es el contenido de la página 3.</p>
-    </section>
-    <section id="page4" class="page hidden">
-        <h2>Contenido de la Página 4</h2>
-        <p>Este es el contenido de la página 4.</p>
-    </section>
-    <section id="page5" class="page hidden">
-        <h2>Contenido de la Página 5</h2>
-        <p>Este es el contenido de la página 5.</p>
-    </section>
-    <section id="page6" class="page hidden">
-        <h2>Contenido de la Página 6</h2>
-        <p>Este es el contenido de la página 6.</p>
-    </section>
-</main>
+    <main class="main-content" id="main-content">
+        <!-- Aquí se cargará el contenido de las páginas -->
+    </main>
+</div>
 
 <footer id="footer">
     <p>&copy; 2024 Gestor de Inventario y Empleados</p>
 </footer>
-
-<script>
-    function toggleNav() {
-        const sidenav = document.getElementById("mySidenav");
-        const main = document.getElementById("main");
-        const footer = document.getElementById("footer");
-        if (sidenav.style.width === "250px") {
-            sidenav.style.width = "0";
-            main.style.marginLeft = "0";
-            footer.style.marginLeft = "0";
-            localStorage.setItem('sidenavOpen', 'false');
-        } else {
-            sidenav.style.width = "250px";
-            main.style.marginLeft = "250px";
-            footer.style.marginLeft = "250px";
-            localStorage.setItem('sidenavOpen', 'true');
-        }
-    }
-
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.page');
-        sections.forEach(section => section.classList.add('hidden'));
-
-        const activeSection = document.getElementById(sectionId);
-        activeSection.classList.remove('hidden');
-    }
-
-    function setUser(name) {
-        document.getElementById('usuario').textContent = name;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('sidenavOpen') === 'true') {
-            document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
-            document.getElementById("footer").style.marginLeft = "250px";
-        }
-        // Simular la obtención del nombre del usuario (debería reemplazarse con la lógica real de autenticación)
-        const userName = "Juan Pérez";
-        setUser(userName);
-    });
-</script>
 
 </body>
 </html>
