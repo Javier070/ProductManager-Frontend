@@ -87,14 +87,18 @@ const displayProducts = (products) => {
     
     products.forEach(product => {
         const categoryName = categories.find(category => category.id === product.category.id)?.name || 'Unknown';
+        const statusChecked = product.status === 'true' ? 'checked' : '';
         tableHTML += `<tr>
                         <td>${product.name}</td>
                         <td>${product.description}</td>
                         <td>${product.price}</td>
                         <td>${categoryName}</td>
-                        <td>${product.status}</td>
-                        <td><button onclick="editProduct(${product.id}, '${product.name}', '${product.description}', ${product.price}, '${product.category.id}', '${product.status}')">Edit</button></td>
-                        <td><button onclick="deleteProduct(${product.id})">Delete</button></td>
+                        <td><label class="switch">
+                              <input type="checkbox" ${statusChecked} onchange="toggleProductStatus(${product.id}, this.checked)">
+                              <span class="slider round"></span>
+                            </label></td>
+                        <td><button onclick="editProduct(${product.id}, '${product.name}', '${product.description}', ${product.price}, '${product.category.id}')">Edit</button></td>
+                        <td><button onclick="confirmDeleteProduct(${product.id})">Delete</button></td>
                       </tr>`;
     });
     
@@ -102,18 +106,43 @@ const displayProducts = (products) => {
     container.innerHTML = tableHTML;
 };
 
-const editProduct = (id, name, description, price, categoryId, status) => {
+const toggleProductStatus = async (id, newStatus) => {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch('http://localhost:8080/product/updateStatus', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ id, status: newStatus.toString() })
+        });
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(responseData.mensaje || 'Error updating product status');
+        }
+
+        alert(responseData.mensaje || 'Product status updated successfully');
+        fetchProducts(token);
+    } catch (error) {
+        console.error('Error updating product status:', error);
+        alert('Failed to update product status: ' + error.message);
+    }
+};
+
+const editProduct = (id, name, description, price, categoryId) => {
     const newName = prompt('Enter new name for the product:', name);
     const newDescription = prompt('Enter new description for the product:', description);
     const newPrice = prompt('Enter new price for the product:', price);
     const newCategoryId = prompt('Enter new category ID for the product:', categoryId);
-    const newStatus = prompt('Enter new status for the product:', status);
-    if (newName && newDescription && newPrice && newCategoryId && newStatus) {
-        updateProduct(id, newName, newDescription, newPrice, newCategoryId, newStatus);
+    if (newName && newDescription && newPrice && newCategoryId) {
+        updateProduct(id, newName, newDescription, newPrice, newCategoryId);
     }
 };
 
-const updateProduct = async (id, name, description, price, categoryId, status) => {
+const updateProduct = async (id, name, description, price, categoryId) => {
     const token = localStorage.getItem('token');
     try {
         const response = await fetch('http://localhost:8080/product/update', {
@@ -122,7 +151,7 @@ const updateProduct = async (id, name, description, price, categoryId, status) =
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ id, name, description, price, category_fk: categoryId, status })
+            body: JSON.stringify({ id, name, description, price, category_fk: categoryId })
         });
 
         const responseData = await response.json();
@@ -136,6 +165,12 @@ const updateProduct = async (id, name, description, price, categoryId, status) =
     } catch (error) {
         console.error('Error updating product:', error);
         alert('Failed to update product: ' + error.message);
+    }
+};
+
+const confirmDeleteProduct = (id) => {
+    if (confirm('Are you sure you want to delete this product?')) {
+        deleteProduct(id);
     }
 };
 

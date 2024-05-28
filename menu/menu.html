@@ -1,6 +1,4 @@
-Para cargar la página `page3.html` cuando se presiona el tercer elemento de la barra lateral, puedes modificar la función `loadPage()` para que cargue la página correspondiente según el índice del elemento seleccionado. Aquí tienes el código actualizado para lograrlo:
 
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -119,34 +117,12 @@ Para cargar la página `page3.html` cuando se presiona el tercer elemento de la 
         function setUser(name) {
             document.getElementById('usuario').textContent = name;
         }
-
-        function loadPage(page) {
-    if (page === 'page.html') {
-        // Cargar la página 3 directamente
-        document.getElementById('main-content').innerHTML = `<iframe src="page3.html" onload="resizeIframe(this)"></iframe>`;
-    } else if (page === 'page2.html') {
-        // Cargar la página 2 directamente
-        document.getElementById('main-content').innerHTML = `<iframe src="page2.html" onload="resizeIframe(this)"></iframe>`;
-    } else if (page === 'page3.html') {
-        // Cargar la página 3 directamente
-        document.getElementById('main-content').innerHTML = `<iframe src="page3.html" onload="resizeIframe(this)"></iframe>`;
-    } else {
-        // Cargar otras páginas
-        document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
+function loadPage(page) {
+        const mainContent = document.getElementById('main-content');
+        mainContent.innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
     }
-}
 
 
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('sidenavOpen') === 'true') {
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main-content").style.marginLeft = "250px";
-                document.getElementById("footer").style.marginLeft = "250px";
-            }
-            const userName = "Juan Pérez";
-            setUser(userName);
-            loadPage('page1.html'); // Cargar la página 1 por defecto
-        });
 
        
     </script>
@@ -160,15 +136,22 @@ Para cargar la página `page3.html` cuando se presiona el tercer elemento de la 
     <div class="usuario" id="usuario"></div>
 </header>
 
+<!-- este div hace referncia al contenido de sidenav -->
 <div class="container">
     <div id="mySidenav" class="sidenav">
+        <!-- Barra lateral con enlaces -->
         <a href="#" onclick="loadPage('page1.html')">Página 1</a>
-        <a href="#" onclick="loadPage('page2.html')">Página 2</a>
-        <a href="#" onclick="loadPage('page3.html')">Página 3</a>
+        <a href="#" onclick="loadPage('/menu/producto/producto.html')">Productos</a> <!-- Ruta ajustada -->
+        <a href="#" onclick="loadPage('page3.html')">Categorías</a>
         <a href="#" onclick="loadPage('page4.html')">Página 4</a>
         <a href="#" onclick="loadPage('page5.html')">Página 5</a>
         <a href="#" onclick="loadPage('page6.html')">Página 6</a>
     </div>
+
+    <main class="main-content" id="main-content">
+        <!-- Contenido principal cargado dinámicamente -->
+    </main>
+</div>
 
     <main class="main-content" id="main-content">
         <!-- Aquí se cargará el contenido de las páginas -->
