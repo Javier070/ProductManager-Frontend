@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let categories = []; // Variable global para almacenar todas las categorías
+
+
 const fetchCategories = async (token) => {
     try {
         const response = await fetch('http://localhost:8080/category/getAll2', {
@@ -24,6 +27,8 @@ const fetchCategories = async (token) => {
         if (!response.ok) {
             throw new Error(data.mensaje);
         }
+        
+        categories = data; // Guardar todas las categorías en la variable global para buscar posteriormebte
 
         displayCategories(data);
     } catch (error) {
@@ -136,4 +141,11 @@ const addCategory = async (name) => {
         console.error('Error adding category:', error);
         alert('Failed to add category: ' + error.message);
     }
+};
+const searchCategories = () => {
+    //: Obtiene el valor del campo de entrada y lo convierte a minúsculas para facilitar la comparación.
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    //: Utiliza el método filter() para crear un nuevo array filteredCategories que contiene solo las categorías cuyo nombre incluye el término de búsqueda ingresado por el usuario.
+    const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchTerm));
+    displayCategories(filteredCategories);
 };

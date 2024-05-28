@@ -20,6 +20,10 @@
     </style>
 </head>
 <body>
+    <h2>Search Categories</h2>
+<!--oninput es un atributo de los elementos HTML, representa un evento que se activa cuando se introduce o cambia un valor en un campo de entrada (como un campo de texto).-->
+<input type="text" id="search-input" placeholder="Search..." oninput="searchCategories()">
+
     <div>
         <h2>Add New Category</h2>
         <form id="add-category-form">
@@ -27,7 +31,7 @@
             <button type="submit">Add Category</button>
         </form>
     </div>
-    
+
     <h1>Categories</h1>
     <div id="categories-container">
         <!-- Aquí se insertará la tabla con las categorías -->
