@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchCategories(token);
     }
 
- 
+    const addCategoryForm = document.getElementById('add-category-form');
+    addCategoryForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const newCategoryName = document.getElementById('new-category-name').value;
+        addCategory(newCategoryName);
+    });
 });
 
 const fetchCategories = async (token) => {
@@ -17,13 +22,13 @@ const fetchCategories = async (token) => {
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.message);
+            throw new Error(data.mensaje);
         }
 
         displayCategories(data);
     } catch (error) {
         console.error('Error fetching categories:', error);
-        alert('Failed to load categories: ' + error.message);
+        alert('Failed to load categories: ' + error.mensaje);
     }
 };
 
@@ -87,20 +92,48 @@ const deleteCategory = async (id) => {
         const response = await fetch(`http://localhost:8080/category/delete${id}`, {
             method: 'DELETE',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         });
 
-        const responseData = await response.json();
-
         if (!response.ok) {
+            const responseData = await response.json();
             throw new Error(responseData.mensaje || 'Error deleting category');
         }
 
+        const responseData = await response.json();
         alert(responseData.mensaje || 'Category deleted successfully');
         fetchCategories(token);
     } catch (error) {
         console.error('Error deleting category:', error);
         alert('Failed to delete category: ' + error.message);
+    }
+};
+
+const addCategory = async (name) => {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch('http://localhost:8080/category/agregar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name })
+        });
+
+        const responseData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(responseData.mensaje || 'Error adding category');
+        }
+
+        alert(responseData.mensaje || 'Category added successfully');
+        document.getElementById('new-category-name').value = ''; // Clear input field
+        fetchCategories(token);
+    } catch (error) {
+        console.error('Error adding category:', error);
+        alert('Failed to add category: ' + error.message);
     }
 };
