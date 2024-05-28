@@ -1,17 +1,67 @@
+/* Estilos básicos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+h2 {
+    color: #9e9ea4;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+/* Estilos para los elementos de búsqueda y creación de productos */
+input[type="text"],
+input[type="number"],
+select {
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #9e9ea4;
+    border-radius: 5px;
+    width: calc(20%); /* Ancho completo con padding */
+    box-sizing: border-box;
+}
+
+button {
+    margin: 10px 0;
+    padding: 8px 16px; /* Añadido un padding horizontal */
+    border: none;
+    border-radius: 5px;
+    background-color: #263043;
+    color: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+    background-color: #1d2634;
+}
+
 .switch {
     position: relative;
     display: inline-block;
     width: 34px;
     height: 20px;
-  }
-  
-  .switch input {
+}
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  .slider {
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -20,9 +70,9 @@
     bottom: 0;
     background-color: #ccc;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 14px;
@@ -31,21 +81,20 @@
     bottom: 3px;
     background-color: white;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked + .slider {
     background-color: #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked + .slider:before {
     transform: translateX(14px);
-  }
-  
-  .slider.round {
+}
+
+.slider.round {
     border-radius: 20px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
-  
+}

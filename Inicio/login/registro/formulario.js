@@ -32,7 +32,10 @@ let registroUser = async () => {
         console.log(responseData);
         alert('Inicio de sesión exitoso: ' + (responseData.token ? 'Token recibido' : ''));
         // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
-        // localStorage.setItem('token', responseData.token);
+         localStorage.setItem('token', responseData.token);
+
+            // Almacenar el email en localStorage
+        localStorage.setItem('userEmail', camposUser.email);
     } catch (error) {
         console.error('Error:', error);
         // Muestra el mensaje de error al usuario

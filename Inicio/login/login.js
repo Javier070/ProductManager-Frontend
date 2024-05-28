@@ -34,6 +34,11 @@ let loginUser = async () => {
         // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
         localStorage.setItem('token', responseData.token);
 
+        localStorage.setItem('email', responseData.email);
+
+
+        // Llama a setUser con el nombre de usuario después de iniciar sesión con éxito
+
         // Redirigir a la nueva página usando una ruta relativa
         window.location.href = '/menu/menu.html';
     } catch (error) {

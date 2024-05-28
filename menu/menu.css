@@ -1,3 +1,103 @@
 .hidden {
     display: none;
 }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1d2634;
+    color: #9e9ea4;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    background-color: #263043;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+}
+
+.menu-hamburguesa {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.usuario {
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 70px; /* Altura del encabezado */
+}
+
+.sidenav {
+    height: calc(100vh - 70px); /* Altura del encabezado */
+    width: 250px; /* Ancho de la barra lateral */
+    position: fixed;
+    top: 70px; /* Ajustado para que esté debajo del encabezado */
+    left: 0;
+    background-color: #263043;
+    overflow-y: auto;
+    transition: width 0.5s;
+    padding-top: 20px;
+    z-index: 999;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidenav a {
+    padding: 12px 32px;
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: #9e9ea4;
+    display: block;
+    transition: color 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main-content {
+    flex: 1;
+    padding: 16px 32px;
+    margin-left: 250px; /* Ancho de la barra lateral */
+    transition: margin-left 0.5s;
+    overflow-y: auto;
+    padding-bottom: 60px; /* Espacio extra para el footer */
+    color: rgba(255, 255, 255, 0.95);
+    background-color: #1d2634;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: margin-left 0.5s;
+}
+
+iframe {
+    width: 100%;
+    height: calc(100vh - 140px); /* Ajustar altura al contenido */
+    border: none;
+}
