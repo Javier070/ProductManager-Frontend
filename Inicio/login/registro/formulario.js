@@ -1,27 +1,35 @@
+// Selecciona el botón de registro en el documento HTML
 let boton = document.getElementById("btnRegistro");
+
+// Añade un evento 'click' al botón de registro
 boton.addEventListener("click", async (event) => {
     event.preventDefault(); // Previene el envío por defecto del formulario
     await registroUser(); // Llama a la función de registro
 });
 
-//comentario prueba
+// Comentario prueba
 
+// Objeto para almacenar los datos del usuario
 let camposUser = {};
 
+// Función asíncrona para el registro del usuario
 let registroUser = async () => {
+    // Asigna los valores de los campos del formulario al objeto camposUser
     camposUser.name = document.getElementById("name").value;
     camposUser.password = document.getElementById("password").value;
     camposUser.email = document.getElementById("email").value;
     camposUser.contactNumber = document.getElementById("contactNumber").value;
 
     try {
+        // Realiza una solicitud POST a la URL especificada con los datos del usuario
         const response = await fetch("http://localhost:8080/user/registro", {
-            method: "POST",
+            method: "POST", // Método HTTP de la solicitud
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json", // Especifica que el cuerpo de la solicitud está en formato JSON
             },
-            body: JSON.stringify(camposUser),
+            body: JSON.stringify(camposUser), // Convierte el objeto camposUser a una cadena JSON
         });
+        // Convierte la respuesta en formato JSON
         const responseData = await response.json();
 
         if (!response.ok) {
@@ -30,15 +38,16 @@ let registroUser = async () => {
         }
 
         console.log(responseData);
+        // Muestra una alerta indicando que el inicio de sesión fue exitoso y si se recibió un token
         alert('Inicio de sesión exitoso: ' + (responseData.token ? 'Token recibido' : ''));
-        // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
-         localStorage.setItem('token', responseData.token);
+        // Almacena el token en el localStorage si es necesario
+        localStorage.setItem('token', responseData.token);
 
-            // Almacenar el email en localStorage
+        // Almacena el email del usuario en el localStorage
         localStorage.setItem('userEmail', camposUser.email);
     } catch (error) {
+        // En caso de error, muestra el error en la consola y una alerta al usuario con el mensaje del error
         console.error('Error:', error);
-        // Muestra el mensaje de error al usuario
         alert(error.message);
     }
 };

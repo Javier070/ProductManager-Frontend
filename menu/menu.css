@@ -18,7 +18,7 @@ header {
     background-color: #263043;
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     padding: 1rem 2rem;
     position: fixed;
@@ -83,10 +83,12 @@ header {
     padding-bottom: 60px; /* Espacio extra para el footer */
     color: rgba(255, 255, 255, 0.95);
     background-color: #1d2634;
+    padding-bottom: 900px; /* Espacio extra para el footer */
+
 }
 
 footer {
-    background-color: #333;
+    background-color: #141f2f;
     color: white;
     text-align: center;
     padding: 1rem;

@@ -1,15 +1,15 @@
-function openNav() {
-    document.getElementById('sidenav').style.width = '250px';
-}
+// function openNav() {
+//     document.getElementById('sidenav').style.width = '250px';
+// }
 
-function closeNav() {
-    document.getElementById('sidenav').style.width = '0';
-}
+// function closeNav() {
+//     document.getElementById('sidenav').style.width = '0';
+// }
 
-function showSection(sectionId) {
-    const sections = document.querySelectorAll('.page');
-    sections.forEach(section => section.classList.add('hidden'));
+// function showSection(sectionId) {
+//     const sections = document.querySelectorAll('.page');
+//     sections.forEach(section => section.classList.add('hidden'));
 
-    const activeSection = document.getElementById(sectionId);
-    activeSection.classList.remove('hidden');
-}
+//     const activeSection = document.getElementById(sectionId);
+//     activeSection.classList.remove('hidden');
+// }

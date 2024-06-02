@@ -6,7 +6,7 @@ btnLogin.addEventListener("click", async (event) => {
 
 let camposLogin = {};
 
-let loginUser = async () => {
+let loginUser = async () => { // Función para iniciar sesión asincrona
     camposLogin.email = document.getElementById("email").value;
     camposLogin.password = document.getElementById("password").value;
 

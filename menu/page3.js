@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let categories = []; // Variable global para almacenar todas las categorías
 
-
 const fetchCategories = async (token) => {
     try {
         const response = await fetch('http://localhost:8080/category/getAll2', {
@@ -28,12 +27,12 @@ const fetchCategories = async (token) => {
             throw new Error(data.mensaje);
         }
         
-        categories = data; // Guardar todas las categorías en la variable global para buscar posteriormebte
+        categories = data; // Guardar todas las categorías en la variable global para buscar posteriormente
 
         displayCategories(data);
     } catch (error) {
-        console.error('Error fetching categories:', error);
-        alert('Failed to load categories: ' + error.mensaje);
+        console.error('Error al obtener las categorías:', error);
+        alert('No se pudieron cargar las categorías: ' + error.message);
     }
 };
 
@@ -41,16 +40,18 @@ const displayCategories = (categories) => {
     const container = document.getElementById('categories-container');
     let tableHTML = `<table>
                         <tr>
-                            <th>Name</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>`;
     
     categories.forEach(category => {
         tableHTML += `<tr>
+                        <td>${category.id}</td>
                         <td>${category.name}</td>
-                        <td><button onclick="editCategory(${category.id}, '${category.name}')">Edit</button></td>
-                        <td><button onclick="deleteCategory(${category.id})">Delete</button></td>
+                        <td><i class="fa-solid fa-pen" onclick="editCategory(${category.id}, '${category.name}')"></i></td>
+                        <td><i class="fa-solid fa-trash" onclick="deleteCategory(${category.id})"></i></td>
                       </tr>`;
     });
     
@@ -58,8 +59,9 @@ const displayCategories = (categories) => {
     container.innerHTML = tableHTML;
 };
 
+
 const editCategory = (id, name) => {
-    const newName = prompt('Enter new name for the category:', name);
+    const newName = prompt('Ingrese el nuevo nombre para la categoría:', name);
     if (newName) {
         updateCategory(id, newName);
     }
@@ -80,14 +82,14 @@ const updateCategory = async (id, name) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error updating category');
+            throw new Error(responseData.mensaje || 'Error actualizando la categoría');
         }
 
-        alert(responseData.mensaje || 'Category updated successfully');
+        alert(responseData.mensaje || 'Categoría actualizada exitosamente');
         fetchCategories(token);
     } catch (error) {
-        console.error('Error updating category:', error);
-        alert('Failed to update category: ' + error.message);
+        console.error('Error al actualizar la categoría:', error);
+        alert('No se pudo actualizar la categoría: ' + error.message);
     }
 };
 
@@ -104,15 +106,15 @@ const deleteCategory = async (id) => {
 
         if (!response.ok) {
             const responseData = await response.json();
-            throw new Error(responseData.mensaje || 'Error deleting category');
+            throw new Error(responseData.mensaje || 'Error eliminando la categoría');
         }
 
         const responseData = await response.json();
-        alert(responseData.mensaje || 'Category deleted successfully');
+        alert(responseData.mensaje || 'Categoría eliminada exitosamente');
         fetchCategories(token);
     } catch (error) {
-        console.error('Error deleting category:', error);
-        alert('Failed to delete category: ' + error.message);
+        console.error('Error al eliminar la categoría:', error);
+        alert('No se pudo eliminar la categoría: ' + error.message);
     }
 };
 
@@ -131,21 +133,22 @@ const addCategory = async (name) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error adding category');
+            throw new Error(responseData.mensaje || 'Error añadiendo la categoría');
         }
 
-        alert(responseData.mensaje || 'Category added successfully');
+        alert(responseData.mensaje || 'Categoría añadida exitosamente');
         document.getElementById('new-category-name').value = ''; // Clear input field
         fetchCategories(token);
     } catch (error) {
-        console.error('Error adding category:', error);
-        alert('Failed to add category: ' + error.message);
+        console.error('Error al añadir la categoría:', error);
+        alert('No se pudo añadir la categoría: ' + error.message);
     }
 };
+
 const searchCategories = () => {
-    //: Obtiene el valor del campo de entrada y lo convierte a minúsculas para facilitar la comparación.
+    // Obtiene el valor del campo de entrada y lo convierte a minúsculas para facilitar la comparación.
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    //: Utiliza el método filter() para crear un nuevo array filteredCategories que contiene solo las categorías cuyo nombre incluye el término de búsqueda ingresado por el usuario.
+    // Utiliza el método filter() para crear un nuevo array filteredCategories que contiene solo las categorías cuyo nombre incluye el término de búsqueda ingresado por el usuario.
     const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchTerm));
     displayCategories(filteredCategories);
 };

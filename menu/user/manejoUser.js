@@ -33,11 +33,11 @@ const displayUsers = (users) => {
     const container = document.getElementById('users-container');
     let tableHTML = `<table>
                         <tr>
-                            <th>Name</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Status</th>
+                            <th>Nombre</th>
+                            <th>Teléfono </th>
+                            <th>Mail</th>
+                            <th>Rol</th>
+                            <th>Estatus</th>
                         </tr>`;
     
     users.forEach(user => {
@@ -58,8 +58,7 @@ const displayUsers = (users) => {
     tableHTML += `</table>`;
     container.innerHTML = tableHTML;
 };
-
-const toggleUserStatus = async (id, newStatus) => {
+const toggleUserStatus = async (id, status) => {
     const token = localStorage.getItem('token');
     try {
         const response = await fetch('http://localhost:8080/user/updateStatus', {
@@ -68,22 +67,24 @@ const toggleUserStatus = async (id, newStatus) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ id, status: newStatus.toString() })
+            body: JSON.stringify({ id, status })
         });
 
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error updating user status');
+            throw new Error(responseData.mensaje || 'Error actualizando el usuario');
         }
 
-        alert(responseData.mensaje || 'User status updated successfully');
-        fetchUsers(token);
+        alert(responseData.mensaje || 'Usuario actualizado exitosamente');
+        fetchUsers(token); // Assuming this function fetches and updates the list of users
     } catch (error) {
-        console.error('Error updating user status:', error);
-        alert('Failed to update user status: ' + error.message);
+        console.error('Error al actualizar el usuario:', error);
+        alert('No se pudo actualizar el usuario: ' + error.message);
     }
 };
+
+
 
 const searchUsers = () => {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();

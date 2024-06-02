@@ -36,8 +36,8 @@ const fetchProducts = async (token) => {
 
         displayProducts(data);
     } catch (error) {
-        console.error('Error fetching products:', error);
-        alert('Failed to load products: ' + error.mensaje);
+        console.error('Error al obtener los productos:', error);
+        alert('No se pudieron cargar los productos: ' + error.message);
     }
 };
 
@@ -57,8 +57,8 @@ const fetchCategories = async (token) => {
         categories = data; // Guardar todas las categorías en la variable global
         populateCategoryOptions(data);
     } catch (error) {
-        console.error('Error fetching categories:', error);
-        alert('Failed to load categories: ' + error.mensaje);
+        console.error('Error al obtener las categorías:', error);
+        alert('No se pudieron cargar las categorías: ' + error.message);
     }
 };
 
@@ -76,29 +76,29 @@ const displayProducts = (products) => {
     const container = document.getElementById('products-container');
     let tableHTML = `<table>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Categoria</th>
+                            <th>Estado</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>`;
     
     products.forEach(product => {
-        const categoryName = categories.find(category => category.id === product.category.id)?.name || 'Unknown';
+        const categoryName = categories.find(category => category.id === product.category.id)?.name || 'Desconocida';
         const statusChecked = product.status === 'true' ? 'checked' : '';
         tableHTML += `<tr>
                         <td>${product.name}</td>
                         <td>${product.description}</td>
-                        <td>${product.price}</td>
+                        <td>${product.price} €</td>
                         <td>${categoryName}</td>
                         <td><label class="switch">
                               <input type="checkbox" ${statusChecked} onchange="toggleProductStatus(${product.id}, this.checked)">
                               <span class="slider round"></span>
                             </label></td>
-                        <td><button onclick="editProduct(${product.id}, '${product.name}', '${product.description}', ${product.price}, '${product.category.id}')">Edit</button></td>
-                        <td><button onclick="confirmDeleteProduct(${product.id})">Delete</button></td>
+                        <td><i class="fa-solid fa-pen" onclick="editProduct(${product.id}, '${product.name}', '${product.description}', ${product.price}, '${product.category.id}')"></i></td>
+                        <td><i class="fa-solid fa-trash" onclick="confirmDeleteProduct(${product.id})"></i></td>
                       </tr>`;
     });
     
@@ -121,22 +121,22 @@ const toggleProductStatus = async (id, newStatus) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error updating product status');
+            throw new Error(responseData.mensaje || 'Error actualizando el estado del producto');
         }
 
-        alert(responseData.mensaje || 'Product status updated successfully');
+        alert(responseData.mensaje || 'Estado del producto actualizado exitosamente');
         fetchProducts(token);
     } catch (error) {
-        console.error('Error updating product status:', error);
-        alert('Failed to update product status: ' + error.message);
+        console.error('Error al actualizar el estado del producto:', error);
+        alert('No se pudo actualizar el estado del producto: ' + error.message);
     }
 };
 
 const editProduct = (id, name, description, price, categoryId) => {
-    const newName = prompt('Enter new name for the product:', name);
-    const newDescription = prompt('Enter new description for the product:', description);
-    const newPrice = prompt('Enter new price for the product:', price);
-    const newCategoryId = prompt('Enter new category ID for the product:', categoryId);
+    const newName = prompt('Ingrese el nuevo nombre para el producto:', name);
+    const newDescription = prompt('Ingrese la nueva descripción para el producto:', description);
+    const newPrice = prompt('Ingrese el nuevo precio para el producto:', price);
+    const newCategoryId = prompt('Ingrese el nuevo ID de la categoría para el producto:', categoryId);
     if (newName && newDescription && newPrice && newCategoryId) {
         updateProduct(id, newName, newDescription, newPrice, newCategoryId);
     }
@@ -157,19 +157,19 @@ const updateProduct = async (id, name, description, price, categoryId) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error updating product');
+            throw new Error(responseData.mensaje || 'Error actualizando el producto');
         }
 
-        alert(responseData.mensaje || 'Product updated successfully');
+        alert(responseData.mensaje || 'Producto actualizado exitosamente');
         fetchProducts(token);
     } catch (error) {
-        console.error('Error updating product:', error);
-        alert('Failed to update product: ' + error.message);
+        console.error('Error al actualizar el producto:', error);
+        alert('No se pudo actualizar el producto: ' + error.message);
     }
 };
 
 const confirmDeleteProduct = (id) => {
-    if (confirm('Are you sure you want to delete this product?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
         deleteProduct(id);
     }
 };
@@ -187,15 +187,15 @@ const deleteProduct = async (id) => {
 
         if (!response.ok) {
             const responseData = await response.json();
-            throw new Error(responseData.mensaje || 'Error deleting product');
+            throw new Error(responseData.mensaje || 'Error eliminando el producto');
         }
 
         const responseData = await response.json();
-        alert(responseData.mensaje || 'Product deleted successfully');
+        alert(responseData.mensaje || 'Producto eliminado exitosamente');
         fetchProducts(token);
     } catch (error) {
-        console.error('Error deleting product:', error);
-        alert('Failed to delete product: ' + error.message);
+        console.error('Error al eliminar el producto:', error);
+        alert('No se pudo eliminar el producto: ' + error.message);
     }
 };
 
@@ -214,23 +214,17 @@ const addProduct = async (name, description, price, categoryId) => {
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.mensaje || 'Error adding product');
+            throw new Error(responseData.mensaje || 'Error añadiendo el producto');
         }
 
-        alert(responseData.mensaje || 'Product added successfully');
+        alert(responseData.mensaje || 'Producto añadido exitosamente');
         document.getElementById('new-product-name').value = ''; // Clear input field
         document.getElementById('new-product-description').value = ''; // Clear input field
         document.getElementById('new-product-price').value = ''; // Clear input field
         document.getElementById('new-product-category').value = ''; // Clear input field
         fetchProducts(token);
     } catch (error) {
-        console.error('Error adding product:', error);
-        alert('Failed to add product: ' + error.message);
+        console.error('Error al añadir el producto:', error);
+        alert('No se pudo añadir el producto: ' + error.message);
     }
-};
-
-const searchProducts = () => {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
-    displayProducts(filteredProducts);
 };

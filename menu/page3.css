@@ -1,12 +1,231 @@
-   /* Estilos básicos para la tabla */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
+/* Estilos básicos para la tabla */
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 6px; /* Borde redondeado suavizado */
+    overflow: hidden; /* Asegura que los bordes redondeados se apliquen correctamente */
+}
+
+th, td {
+    border: 1px solid #3D4458;
+    padding: 8px;
+    text-align: left;
+    color: white; /* Color de las letras */
+    background-color: #095fff; /* Fondo de los encabezados de la tabla */
+}
+
+th {
+    background-color: #263043; /* Fondo de la tabla más claro */
+}
+
+td {
+    background-color: #263043c5; /* Fondo de la tabla más claro */
+}
+
+h2 {
+    color: #F0F1F2;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #9e9ea4;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    margin: 10px 0;
+    padding: 8px 16px; /* Añadido un padding horizontal */
+    border: none;
+    border-radius: 5px;
+    background-color: #263043;
+    color: white;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+    background-color: #1d2634;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+td i {
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+    color: #ff0101; /* Color más claro para los íconos */
+}
+
+td i:hover {
+    color: #c40b0b; /* Cambiar a blanco al pasar el ratón */
+}
+
+td i.fa-trash {
+    color: #f44336; /* Color para el ícono de eliminar */
+}
+
+td i.fa-pen {
+    color: #4CAF50; /* Color para el ícono de editar */
+}
+
+.card {
+    background-color: #13e85a;
+    border: 1px solid #0303c1;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 16px;
+    color: rgb(208, 16, 134);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #141F2F;
+}
+
+.menu-hamburguesa {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+}
+
+.usuario-icono {
+    margin-left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+}
+
+.sidenav {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #263043;
+    padding-top: 20px;
+    overflow-x: hidden;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 16px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.scroll-container {
+    max-height: 500px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilitar desplazamiento vertical */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #141F2F;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
