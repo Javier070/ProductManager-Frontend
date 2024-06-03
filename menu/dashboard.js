@@ -91,6 +91,9 @@ const displayProductCount = (count) => {
     container.textContent = `Total de productos: ${count}`;
 };
 
+
+
+
 const updateChart = () => {
     if (!categories.length || !products.length) return;
 

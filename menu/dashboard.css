@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #263043;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -18,13 +18,13 @@ body {
 }
 
 .card {
-    background-color: #fff;
+    background-color: #14202f; /* Utilizado el fondo de la tabla más claro */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     font-size: 1.2em;
-    color: #333;
+    color: white; /* Mantener el color del texto coherente */
 }
 
 .chart-container {
