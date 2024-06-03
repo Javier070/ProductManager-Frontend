@@ -77,6 +77,7 @@ const fetchProducts = async (token) => {
             throw new Error(data.mensaje);
         }
         
+        products = data;
         displayProductCount(data.length);
         updateChart();
     } catch (error) {
