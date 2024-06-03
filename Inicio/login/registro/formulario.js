@@ -44,7 +44,9 @@ let registroUser = async () => {
         localStorage.setItem('token', responseData.token);
 
         // Almacena el email del usuario en el localStorage
-        localStorage.setItem('userEmail', camposUser.email);
+        localStorage.setItem('userEmail', camposLogin.email);
+        window.location.href = '/menu/menu.html';
+
     } catch (error) {
         // En caso de error, muestra el error en la consola y una alerta al usuario con el mensaje del error
         console.error('Error:', error);

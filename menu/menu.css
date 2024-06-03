@@ -1,7 +1,3 @@
-.hidden {
-    display: none;
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -15,43 +11,53 @@ body {
 }
 
 header {
-    background-color: #263043;
+    background-color: #141F2F;
     color: white;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 20px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box; /* Ensure padding is included in the width */
+
 }
 
 .menu-hamburguesa {
+    font-size: 24px;
     cursor: pointer;
     background: none;
     border: none;
     color: white;
-    font-size: 1.5rem;
 }
 
 .usuario {
-    margin-right: 1rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.usuario-icono {
+    font-size: 24px;
+}
+
+#emailText {
+    margin-left: 10px;
 }
 
 .container {
     display: flex;
     flex: 1;
-    margin-top: 70px; /* Altura del encabezado */
+    margin-top: 70px;
 }
 
 .sidenav {
-    height: calc(100vh - 70px); /* Altura del encabezado */
-    width: 250px; /* Ancho de la barra lateral */
+    height: calc(100vh - 70px);
+    width: 250px;
     position: fixed;
-    top: 70px; /* Ajustado para que esté debajo del encabezado */
+    top: 70px;
     left: 0;
     background-color: #263043;
     overflow-y: auto;
@@ -77,14 +83,12 @@ header {
 .main-content {
     flex: 1;
     padding: 16px 32px;
-    margin-left: 250px; /* Ancho de la barra lateral */
+    margin-left: 250px;
     transition: margin-left 0.5s;
     overflow-y: auto;
-    padding-bottom: 60px; /* Espacio extra para el footer */
+    padding-bottom: 60px;
     color: rgba(255, 255, 255, 0.95);
     background-color: #1d2634;
-    padding-bottom: 900px; /* Espacio extra para el footer */
-
 }
 
 footer {
@@ -100,6 +104,6 @@ footer {
 
 iframe {
     width: 100%;
-    height: calc(100vh - 140px); /* Ajustar altura al contenido */
+    height: calc(100vh - 140px);
     border: none;
 }

@@ -1,14 +1,13 @@
-let btnLogin = document.getElementById("btnLogin");
-btnLogin.addEventListener("click", async (event) => {
+document.getElementById("btnLogin").addEventListener("click", async (event) => {
     event.preventDefault(); // Previene el envío por defecto del formulario
     await loginUser(); // Llama a la función de inicio de sesión
 });
 
-let camposLogin = {};
-
 let loginUser = async () => { // Función para iniciar sesión asincrona
-    camposLogin.email = document.getElementById("email").value;
-    camposLogin.password = document.getElementById("password").value;
+    let camposLogin = {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+    };
 
     console.log("Datos de login:", camposLogin); // Verifica los datos antes de enviarlos
 
@@ -16,7 +15,7 @@ let loginUser = async () => { // Función para iniciar sesión asincrona
         const response = await fetch("http://localhost:8080/user/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(camposLogin),
         });
@@ -34,10 +33,8 @@ let loginUser = async () => { // Función para iniciar sesión asincrona
         // Aquí puedes almacenar el token en el localStorage o sessionStorage si es necesario
         localStorage.setItem('token', responseData.token);
 
-        localStorage.setItem('email', responseData.email);
-
-
-        // Llama a setUser con el nombre de usuario después de iniciar sesión con éxito
+        // Almacena el email del usuario en el localStorage
+        localStorage.setItem('userEmail', camposLogin.email);
 
         // Redirigir a la nueva página usando una ruta relativa
         window.location.href = '/menu/menu.html';
