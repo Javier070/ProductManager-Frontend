@@ -5,51 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor</title>
     <link rel="stylesheet" href="menu.css">
-    <link rel="icon" href="">d
-    <!-- Bootstrap CSS -->
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-  
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            function toggleNav() {
-                const sidenav = document.getElementById("mySidenav");
-                const mainContent = document.getElementById("main-content");
-                const footer = document.getElementById("footer");
-                const isOpen = sidenav.style.width === "250px";
-                sidenav.style.width = isOpen ? "0" : "250px";
-                mainContent.style.marginLeft = isOpen ? "0" : "250px";
-                footer.style.marginLeft = isOpen ? "0" : "250px";
-                localStorage.setItem('sidenavOpen', !isOpen);
-            }
-    
-            function setUser(name) {
-                document.getElementById('usuario').textContent = name;
-            }
-    
-            function loadPage(page) {
-                document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
-            }
-    
-            function setEmailText(email) {
-                document.getElementById('emailText').textContent = email;
-            }
-    
-            const userEmail = localStorage.getItem('userEmail');
-            if (userEmail) {
-                setEmailText(userEmail);
-            }
-    
-            document.querySelector('.menu-hamburguesa').addEventListener('click', toggleNav);
-        });
-    </script>
-    
 </head>
 <body>
 
 <header>
-    <button class="menu-hamburguesa" onclick="toggleNav()">
+    <button class="menu-hamburguesa">
         <i class="fas fa-bars"></i>
     </button>
     
@@ -68,7 +30,6 @@
         <a href="#" onclick="loadPage('/menu/user/manejoUser.html')">Usuarios</a>
         <a href="#" onclick="loadPage('/menu/producto/producto.html')">Productos</a> <!-- Ruta ajustada -->
         <a href="#" onclick="loadPage('page3.html')">Categorías</a>
-
     </div>
 
     <main class="main-content" id="main-content">
@@ -76,6 +37,31 @@
     </main>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidenav = document.getElementById("mySidenav");
+        const mainContent = document.getElementById("main-content");
+        const footer = document.getElementById("footer");
+
+        function toggleNav() {
+            const isOpen = sidenav.style.width === "250px";
+            sidenav.style.width = isOpen ? "0" : "250px";
+            mainContent.style.marginLeft = isOpen ? "0" : "250px";
+            // footer.style.marginLeft = isOpen ? "0" : "250px"; // No hay un elemento con el id "footer" en tu HTML
+        }
+
+        document.querySelector('.menu-hamburguesa').addEventListener('click', toggleNav);
+
+        const userEmail = localStorage.getItem('userEmail');
+        if (userEmail) {
+            document.getElementById('emailText').textContent = userEmail;
+        }
+    });
+
+    function loadPage(page) {
+        document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
+    }
+</script>
 
 </body>
 </html>
