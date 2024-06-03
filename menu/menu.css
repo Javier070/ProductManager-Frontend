@@ -107,3 +107,32 @@ iframe {
     height: calc(100vh - 140px);
     border: none;
 }
+
+
+/* Estilo para el botón de cerrar sesión dentro del sidenav */
+.sidenav button#logoutButton {
+    position: absolute;
+    bottom: 90px;
+    left: 20px;
+}
+
+
+/* CSS para el botón de cerrar sesión */
+button#logoutButton {
+    padding: 12px 32px;
+    background-color:#1D2634;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#logoutButton:hover {
+    background-color: #38455a;
+}
+
+/* Estilo para el icono de cerrar sesión */
+button#logoutButton i {
+    margin-right: 8px;
+}

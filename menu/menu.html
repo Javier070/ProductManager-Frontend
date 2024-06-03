@@ -30,6 +30,11 @@
         <a href="#" onclick="loadPage('/menu/user/manejoUser.html')">Usuarios</a>
         <a href="#" onclick="loadPage('/menu/producto/producto.html')">Productos</a> <!-- Ruta ajustada -->
         <a href="#" onclick="loadPage('page3.html')">Categorías</a>
+
+        <button id="logoutButton" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+        </button>
+        
     </div>
 
     <main class="main-content" id="main-content">
@@ -60,6 +65,13 @@
 
     function loadPage(page) {
         document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
+    }
+
+    function logout() {
+        // Limpiar los datos de sesión
+        localStorage.removeItem('userEmail');
+        // Redirigir al usuario a la página de inicio de sesión u otra página relevante
+        window.location.href = '/Inicio/login/login.html'; // Cambia la ruta según corresponda
     }
 </script>
 
