@@ -1,10 +1,7 @@
 /* Estilos básicos para la tabla */
-
-*{
+* {
     font-family: 'Montserrat', sans-serif;
-
 }
-
 
 table {
     width: 100%;
@@ -20,7 +17,6 @@ th, td {
     text-align: left;
     color: white; /* Color de las letras */
     background-color:#095fff; /* Fondo de los encabezados de la tabla */
-
 }
 
 th {
@@ -39,8 +35,6 @@ h2 {
     width: 60%;
     margin: 0 auto; /* Centrar el contenedor */
 }
-
-
 
 /* Estilos para los elementos de búsqueda y creación de productos */
 input[type="text"],
@@ -117,6 +111,15 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* Evita que el slider se mueva en caso de error */
+.switch input:disabled + .slider {
+    background-color: #ccc;
+}
+
+.switch input:disabled + .slider:before {
+    background-color: #999;
 }
 
 /* Estilos adicionales para la tabla */

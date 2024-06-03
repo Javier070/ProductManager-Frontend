@@ -34,7 +34,7 @@ const displayUsers = (users) => {
     let tableHTML = `<table>
                         <tr>
                             <th>Nombre</th>
-                            <th>Teléfono </th>
+                            <th>Teléfono</th>
                             <th>Mail</th>
                             <th>Rol</th>
                             <th>Estatus</th>
@@ -49,7 +49,7 @@ const displayUsers = (users) => {
                         <td>${user.email}</td>
                         <td>${role}</td>
                         <td><label class="switch">
-                              <input type="checkbox" ${statusChecked} onchange="toggleUserStatus(${user.id}, this.checked)">
+                              <input type="checkbox" ${statusChecked} data-user-id="${user.id}" onchange="toggleUserStatus(${user.id}, this.checked)">
                               <span class="slider round"></span>
                             </label></td>
                       </tr>`;
@@ -58,8 +58,12 @@ const displayUsers = (users) => {
     tableHTML += `</table>`;
     container.innerHTML = tableHTML;
 };
+
 const toggleUserStatus = async (id, status) => {
     const token = localStorage.getItem('token');
+    const checkbox = document.querySelector(`input[data-user-id="${id}"]`);
+    checkbox.disabled = true;  // Desactivar el checkbox temporalmente
+    
     try {
         const response = await fetch('http://localhost:8080/user/updateStatus', {
             method: 'POST',
@@ -81,8 +85,16 @@ const toggleUserStatus = async (id, status) => {
     } catch (error) {
         console.error('Error al actualizar el usuario:', error);
         alert('No se pudo actualizar el usuario: ' + error.message);
+
+        // Revertir el cambio del checkbox si estba en azul lo pone gris y si es gris en azul
+        //en el parametro cambios el valor al hacer click y con !status lo devolvemos a su estado original 
+        
+        checkbox.checked = !status; 
+    } finally {
+        checkbox.disabled = false; // Volver a habilitar el checkbox
     }
 };
+
 
 
 
