@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="card">
+            <div id="categories-count">Total de categorías: 0</div>
+        </div>
+        <div class="card">
+            <div id="users-count">Total de usuarios: 0</div>
+        </div>
+        <div class="card">
+            <div id="products-count">Total de productos: 0</div>
+        </div>
+    </div>
+    <div class="chart-container">
+        <canvas id="categoryChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
