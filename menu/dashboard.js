@@ -91,26 +91,48 @@ const displayProductCount = (count) => {
     container.textContent = `Total de productos: ${count}`;
 };
 
-const updateChart = () => {
+
+function updateChart() {
     if (!categories.length || !products.length) return;
 
-    const categoryProductCount = categories.map(category => {
-        return {
-            name: category.name,
-            count: products.filter(product => product.category.id === category.id).length
-        };
+    // Filtrar productos que tengan el estado "true"
+    const activeProducts = products.filter(product => product.status === 'true');
+
+    // Crear un objeto para almacenar el recuento de productos por categoría
+    const categoryProductCount = {};
+
+    // Iterar sobre las categorías para inicializar el recuento en 0
+    // funcion anonima que se pasa como argu
+    //objeto que contiene las categorias.foreach
+    categories.forEach(
+        
+        function(category) {
+         /**
+          *  category representa cada elemento del array categories durante cada iteración del bucle forEach(), y category.name es la propiedad name del objeto category, que se utiliza para inicializar el recuento en 0 en el objeto categoryProductCount. */ 
+        categoryProductCount[category.name] = 0; // prepara el objeto categoryProductCount con contadores de categoría inicializados en 0.
+    });
+    
+
+    // Contar productos por categoría
+    activeProducts.forEach(
+        function(product) {
+        categoryProductCount[product.category.name]++;
     });
 
-    const ctx = document.getElementById('categoryChart').getContext('2d');
-    const categoryNames = categoryProductCount.map(item => item.name);
-    const productCounts = categoryProductCount.map(item => item.count);
+    // Preparar datos para el gráfico
+    const categoryNames = Object.keys(categoryProductCount);
+    const productCounts = Object.values(categoryProductCount);
 
+    // Obtener el contexto del gráfico
+    const ctx = document.getElementById('categoryChart').getContext('2d');
+
+    // Crear el gráfico de barras
     new Chart(ctx, {
         type: 'bar',
         data: {
             labels: categoryNames,
             datasets: [{
-                label: 'Cantidad de productos',
+                label: 'Cantidad de productos por validados por categoria',
                 data: productCounts,
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
@@ -128,5 +150,4 @@ const updateChart = () => {
             }
         }
     });
-};
-;
+}

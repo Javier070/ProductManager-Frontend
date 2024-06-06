@@ -85,8 +85,7 @@ const updateCategory = async (id, name) => {
             throw new Error(responseData.mensaje || 'Error actualizando la categoría');
         }
 
-        alert(responseData.mensaje || 'Categoría actualizada exitosamente');
-        fetchCategories(token);
+         fetchCategories(token);
     } catch (error) {
         console.error('Error al actualizar la categoría:', error);
         alert('No se pudo actualizar la categoría: ' + error.message);
@@ -143,12 +142,6 @@ const addCategory = async (name) => {
         console.error('Error al añadir la categoría:', error);
         alert('No se pudo añadir la categoría: ' + error.message);
     }
-};
-
-const searchCategories = () => {
-    // Obtiene el valor del campo de entrada y lo convierte a minúsculas para facilitar la comparación.
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    // Utiliza el método filter() para crear un nuevo array filteredCategories que contiene solo las categorías cuyo nombre incluye el término de búsqueda ingresado por el usuario.
-    const filteredCategories = categories.filter(category => category.name.toLowerCase().includes(searchTerm));
-    displayCategories(filteredCategories);
+    
+    
 };

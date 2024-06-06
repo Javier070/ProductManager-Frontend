@@ -228,3 +228,15 @@ const addProduct = async (name, description, price, categoryId) => {
         alert('No se pudo añadir el producto: ' + error.message);
     }
 };
+
+// Función para buscar productos
+const searchProducts = () => {
+    // Obtener el término de búsqueda del campo de entrada y convertirlo a minúsculas para facilitar la comparación
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+
+    // Filtrar los productos basados en el término de búsqueda
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+
+    // Mostrar los productos filtrados
+    displayProducts(filteredProducts);
+};

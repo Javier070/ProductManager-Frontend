@@ -6,15 +6,17 @@
     <title>Gestor</title>
     <link rel="stylesheet" href="menu.css">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> 
 </head>
 <body>
 
 <header>
+        <!-- Botón para abrir/cerrar el menú de navegación -->
     <button class="menu-hamburguesa">
         <i class="fas fa-bars"></i>
     </button>
-    
+        <!-- la información del usuario -->
+
     <div class="usuario" id="usuario">
         <i class="fas fa-user usuario-icono"></i>
         <div style="margin-left: 10px">
@@ -23,7 +25,7 @@
     </div>
 </header>
 
-<!-- este div hace referencia al contenido de sidenav -->
+<!-- Contenedor principal que incluye la sidenav y el main-content -->
 <div class="container">
     <div id="mySidenav" class="sidenav">
         <!-- Barra lateral con enlaces -->
@@ -45,37 +47,42 @@
 </div>
 
 <script>
+       
+       // Evento que se ejecuta cuando el DOM ha sido completamente cargado
     document.addEventListener('DOMContentLoaded', () => {
         const sidenav = document.getElementById("mySidenav");
         const mainContent = document.getElementById("main-content");
-        const footer = document.getElementById("footer");
-
+       
+        // Función para abrir/cerrar la barra lateral
         function toggleNav() {
             const isOpen = sidenav.style.width === "250px";
             sidenav.style.width = isOpen ? "0" : "250px";
             mainContent.style.marginLeft = isOpen ? "0" : "250px";
             // footer.style.marginLeft = isOpen ? "0" : "250px"; // No hay un elemento con el id "footer" en tu HTML
         }
-
+      
+        // Añadir evento de clic al botón del menú de hamburguesa para alternar la barra lateral
         document.querySelector('.menu-hamburguesa').addEventListener('click', toggleNav);
-
-        const userEmail = localStorage.getItem('userEmail');
-        if (userEmail) {
-            document.getElementById('emailText').textContent = userEmail;
-        }
     });
-
+   
+    // Función para cargar páginas dentro del contenido principal usando un iframe
     function loadPage(page) {
-        document.getElementById('main-content').innerHTML = `<iframe src="${page}" onload="resizeIframe(this)"></iframe>`;
+        document.getElementById('main-content').innerHTML = `<iframe src="${page}"></iframe>`;
     }
+    // Obtener el email del usuario almacenado en localStorage y mostrarlo en el elemento correspondiente
+    const userEmail = localStorage.getItem('userEmail');
+document.getElementById('emailText').textContent = userEmail;
+
+
 
     function logout() {
         // Limpiar los datos de sesión
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('token');
+
         // Redirigir al usuario a la página de inicio de sesión u otra página relevante
         window.location.href = '/Inicio/login/login.html'; // Cambia la ruta según corresponda
     }
 </script>
-
 </body>
 </html>
