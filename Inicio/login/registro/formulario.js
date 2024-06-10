@@ -1,55 +1,51 @@
 // Selecciona el botón de registro en el documento HTML
 let boton = document.getElementById("btnRegistro");
 
-// Añade un evento 'click' al botón de registro
-boton.addEventListener("click", async (event) => {
-    event.preventDefault(); // Previene el envío por defecto del formulario
-    await registroUser(); // Llama a la función de registro
-});
-
-// Comentario prueba
-
-// Objeto para almacenar los datos del usuario
-let camposUser = {};
-
 // Función asíncrona para el registro del usuario
 let registroUser = async () => {
-    // Asigna los valores de los campos del formulario al objeto camposUser
-    camposUser.name = document.getElementById("name").value;
-    camposUser.password = document.getElementById("password").value;
-    camposUser.email = document.getElementById("email").value;
-    camposUser.contactNumber = document.getElementById("contactNumber").value;
+    // Objeto para almacenar los datos del usuario
+    let camposUser = {
+        name: document.getElementById("name").value,
+        password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        contactNumber: document.getElementById("contactNumber").value
+    };
 
+    if (!camposUser.name || !camposUser.password || !camposUser.email || !camposUser.contactNumber) {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+    
     try {
         // Realiza una solicitud POST a la URL especificada con los datos del usuario
         const response = await fetch("http://localhost:8080/user/registro", {
-            method: "POST", // Método HTTP de la solicitud
+            method: "POST",
             headers: {
-                "Content-Type": "application/json", // Especifica que el cuerpo de la solicitud está en formato JSON
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(camposUser), // Convierte el objeto camposUser a una cadena JSON
+            body: JSON.stringify(camposUser),
         });
-        // Convierte la respuesta en formato JSON
-        const responseData = await response.json();
 
         if (!response.ok) {
-            // Si la respuesta no es OK, lanza un error con el mensaje del cuerpo de la respuesta (muestra el mensaje de data)
+            const responseData = await response.json();
             throw new Error(responseData.mensaje || 'Error en la solicitud');
         }
 
+        const responseData = await response.json();
         console.log(responseData);
-        // Muestra una alerta indicando que el inicio de sesión fue exitoso y si se recibió un token
-        alert('Inicio de sesión exitoso: ' + (responseData.token ? 'Token recibido' : ''));
-        // Almacena el token en el localStorage si es necesario
-        localStorage.setItem('token', responseData.token);
 
-        // Almacena el email del usuario en el localStorage
-        localStorage.setItem('userEmail', camposLogin.email);
-        window.location.href = '/menu/menu.html';
 
+        alert("Registro exitoso");
+
+        
     } catch (error) {
-        // En caso de error, muestra el error en la consola y una alerta al usuario con el mensaje del error
         console.error('Error:', error);
         alert(error.message);
     }
 };
+
+// Añade un evento 'click' al botón de registro
+boton.addEventListener("click", async (event) => {
+    event.preventDefault(); // Previene la acción por defecto del formulario
+    await registroUser(); // Llama a la función de registro
+});

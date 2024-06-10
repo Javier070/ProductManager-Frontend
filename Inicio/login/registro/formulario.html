@@ -16,55 +16,62 @@
             <form method="POST">
                 <div class="formbold-input-flex">
                     <div>
-                    <label for="name" class="formbold-form-label">Nombre</label>
-                    <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Jane"
-                    class="formbold-form-input"
-                    />
+                        <label for="name" class="formbold-form-label">Nombre</label>
+                        <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Jane"
+                        class="formbold-form-input"
+                        required
+                        maxlength="20" 
+                        />
+                    </div>
+                    <div>
+                        <label for="password" class="formbold-form-label">Contraseña</label>
+                        <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="password"
+                        class="formbold-form-input"
+                        required
+                        minlength="8" 
+                        />
+                    </div>
                 </div>
-                <div>
-                    <label for="password" class="formbold-form-label">Contraseña</label>
-                    <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="password"
-                    class="formbold-form-input"
-                    />
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="email" class="formbold-form-label">Mail</label>
+                        <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="jhon@mail.com"
+                        class="formbold-form-input"
+                        required
+                        />
+                    </div>
+                    <div>
+                        <label for="contactNumber" class="formbold-form-label">Teléfono</label>
+                        <input
+                        type="text"
+                        name="contactNumber"
+                        id="contactNumber"
+                        placeholder="601-235-041"
+                        class="formbold-form-input"
+                        required
+                        title="Debe contener entre 7 y 12 dígitos, puede incluir + y espacios" />
+                        
+                    </div>
                 </div>
-              </div>
-              <div class="formbold-input-flex">
-                <div>
-                    <label for="email" class="formbold-form-label">Mail</label>
-                    <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="jhon@mail.com"
-                    class="formbold-form-input"
-                    />
-                </div>
-                <div>
-                    <label for="contactNumber" class="formbold-form-label">Teléfono</label>
-                    <input
-                    type="text"
-                    name="contactNumber"
-                    id="contactNumber"
-                    placeholder="601-235-041"
-                    class="formbold-form-input"
-                    />
-                </div>
-              </div>
-              <button id="btnRegistro" class="formbold-btn">
-                  Registrarse
-              </button>
-              <p class="formbold-form-label">¿Ya tienes una cuenta? <a href="../login.html">Iniciar sesion aqui</a></p>
-          </form>
+                <button id="btnRegistro" class="formbold-btn">
+                    Registrarse
+                </button>
+                <p class="formbold-form-label">¿Ya tienes una cuenta? <a href="../login.html">Iniciar sesión aquí</a></p>
+            </form>
         </div>
-      </div>
-     <script src="formulario.js"></script>
+    </div>
+    <script src="formulario.js"></script>
 </body>
 </html>

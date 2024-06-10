@@ -16,6 +16,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 20px;
 }
 
 /* Contenedor principal */
@@ -103,131 +104,7 @@ body {
     border-radius: 5px;
     padding: 14px 25px;
     border: none;
-    font-weight: 500;@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-    /* Reset y configuración básica */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', 'Inter', sans-serif;
-    }
-    
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #263043;
-        color: #F0F1F2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        padding: 20px;
-    }
-    
-    /* Títulos */
-    .formbold-title-wrapper {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    
-    .formbold-title {
-        font-size: 36px;
-        font-weight: 700;
-        color: #095fff;
-        margin-bottom: 10px;
-    }
-    
-    .formbold-subtitle {
-        font-size: 24px;
-        font-weight: 500;
-        color: #F0F1F2;
-    }
-    
-    /* Contenedor principal */
-    .formbold-main-wrapper {
-        width: 100%;
-        max-width: 600px;
-        padding: 48px;
-    }
-    
-    /* Formulario */
-    .formbold-form-wrapper {
-        background: #1d2634;
-        padding: 48px;
-        border-radius: 8px;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-    }
-    
-    /* Estilos para formularios */
-    .formbold-input-flex {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 15px;
-    }
-    
-    .formbold-input-flex > div {
-        width: 50%;
-    }
-    
-    .formbold-form-input {
-        width: 100%;
-        padding: 13px 22px;
-        border-radius: 5px;
-        border: 1px solid #3D4458;
-        background: #263043c5;
-        font-weight: 500;
-        font-size: 16px;
-        color: #F0F1F2;
-        outline: none;
-        resize: none;
-    }
-    
-    .formbold-form-input::placeholder {
-        color: #536387;
-    }
-    
-    .formbold-form-input:focus {
-        border-color: #095fff;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .formbold-form-label {
-        color: #F0F1F2;
-        font-size: 14px;
-        line-height: 24px;
-        display: block;
-        margin-bottom: 10px;
-    }
-    
-    .formbold-btn {
-        text-align: center;
-        width: 100%;
-        font-size: 16px;
-        border-radius: 5px;
-        padding: 14px 25px;
-        border: none;
-        font-weight: 500;
-        background-color: #095fff;
-        color: white;
-        cursor: pointer;
-        margin-top: 25px;
-    }
-    
-    .formbold-btn:hover {
-        background-color: #0749d8;
-    }
-    
-    /* Estilos para el enlace de inicio de sesión */
-    .formbold-form-label a {
-        color: #095fff;
-        text-decoration: none;
-    }
-    
-    .formbold-form-label a:hover {
-        text-decoration: underline;
-    }
-    
+    font-weight: 500;
     background-color: #095fff;
     color: white;
     cursor: pointer;
