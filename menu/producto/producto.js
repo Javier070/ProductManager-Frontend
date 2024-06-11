@@ -231,12 +231,14 @@ const addProduct = async (name, description, price, categoryId) => {
 
 // Función para buscar productos
 const searchProducts = () => {
-    // Obtener el término de búsqueda del campo de entrada y convertirlo a minúsculas para facilitar la comparación
+    // Obtener el término de búsqueda del campo de entrada y convertirlo a minúsculas 
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
 
     // Filtrar los productos basados en el término de búsqueda
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
-
+    
+const filteredProducts = products.filter(function(product) {
+    return product.name.toLowerCase().includes(searchTerm);
+})
     // Mostrar los productos filtrados
     displayProducts(filteredProducts);
 };

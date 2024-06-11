@@ -145,3 +145,16 @@ const addCategory = async (name) => {
     
     
 };
+
+function searchCategories() {
+    // Obtener el término de búsqueda del campo de entrada y convertirlo a minúsculas para facilitar la comparación
+    var searchTerm = document.getElementById('search-input').value.toLowerCase();
+
+    // Filtrar las categorías basadas en el término de búsqueda
+    var filteredCategories = categories.filter(function(category) {
+        return category.name.toLowerCase().includes(searchTerm);
+    });
+
+    // Mostrar las categorías filtradas
+    displayCategories(filteredCategories);
+}
