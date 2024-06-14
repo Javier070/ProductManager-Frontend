@@ -17,6 +17,7 @@ let loginUser = async () => { // Función para iniciar sesión asincrona
             headers: {
                 "Content-Type": "application/json"
             },
+            //Convierte el objeto camposLogin a una cadena JSON para enviarlo en el cuerpo de la solicitud.
             body: JSON.stringify(camposLogin),
         });
 

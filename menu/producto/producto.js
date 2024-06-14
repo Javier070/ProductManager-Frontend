@@ -116,6 +116,7 @@ const toggleProductStatus = async (id, newStatus) => {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ id, status: newStatus.toString() })
+            //. El valor del estado se convierte a una cadena de caracteres mediante newStatus.toString() antes de ser enviado, para asegurar que sea una cadena.
         });
 
         const responseData = await response.json();

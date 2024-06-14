@@ -11,6 +11,21 @@ let categories = [];
 let users = [];
 let products = [];
 
+const displayCategoryCount = (count) => {
+    const container = document.getElementById('categories-count');
+    container.textContent = `Total de categorías: ${count}`;
+};
+
+const displayUserCount = (count) => {
+    const container = document.getElementById('users-count');
+    container.textContent = `Total de usuarios: ${count}`;
+};
+
+const displayProductCount = (count) => {
+    const container = document.getElementById('products-count');
+    container.textContent = `Total de productos: ${count}`;
+};
+
 const fetchCategories = async (token) => {
     try {
         const response = await fetch('http://localhost:8080/category/getAll2', {
@@ -33,10 +48,7 @@ const fetchCategories = async (token) => {
     }
 };
 
-const displayCategoryCount = (count) => {
-    const container = document.getElementById('categories-count');
-    container.textContent = `Total de categorías: ${count}`;
-};
+
 
 const fetchUsers = async (token) => {
     try {
@@ -59,10 +71,7 @@ const fetchUsers = async (token) => {
     }
 };
 
-const displayUserCount = (count) => {
-    const container = document.getElementById('users-count');
-    container.textContent = `Total de usuarios: ${count}`;
-};
+
 
 const fetchProducts = async (token) => {
     try {
@@ -86,10 +95,7 @@ const fetchProducts = async (token) => {
     }
 };
 
-const displayProductCount = (count) => {
-    const container = document.getElementById('products-count');
-    container.textContent = `Total de productos: ${count}`;
-};
+
 
 
 function updateChart() {
@@ -122,21 +128,22 @@ function updateChart() {
     // Preparar datos para el gráfico
     const categoryNames = Object.keys(categoryProductCount);
     const productCounts = Object.values(categoryProductCount);
+    //'Electrónica': 10, 'Ropa': 5, 'Juguetes': 8
 
     // Obtener el contexto del gráfico
-    const ctx = document.getElementById('categoryChart').getContext('2d');
+    const ctx = document.getElementById('categoryChart');
 
     // Crear el gráfico de barras
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: categoryNames,
+            labels: categoryNames,  //las letras de abajo
             datasets: [{
                 label: 'Cantidad de productos por validados por categoria',
-                data: productCounts,
+                data: productCounts, //letras dentro de  las barras
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
+                borderWidth: 1 //grosor de la barra
             }]
         },
         options: {
