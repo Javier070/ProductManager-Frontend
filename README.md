@@ -1,6 +1,7 @@
 # ProductManager-Frontend
 
 This project is a web application with user login, dashboard functionalities, and product management.
+
 This is the front-end of the java application that you can find in this URL: https://github.com/Javier070/Dockerized-ProductManager-Spring-JPA-JWT_Auth
 
 
