@@ -1,6 +1,8 @@
 # ProductManager-Frontend
 
 This project is a web application with user login, dashboard functionalities, and product management.
+This is the front-end of the java application that you can find in this URL: https://github.com/Javier070/Dockerized-ProductManager-Spring-JPA-JWT_Auth
+
 
 ## Project Structure
 
@@ -35,9 +37,8 @@ This project is a web application with user login, dashboard functionalities, an
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (for development and running the project locally)
-- [Visual Studio Code](https://code.visualstudio.com/) with the Live Server extension 
+- [Visual Studio Code](https://code.visualstudio.com/)  with the Live Server extension 
     - [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-
 
 ### Installation
 
