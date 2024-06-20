@@ -5,6 +5,61 @@ This project is a web application with user login, dashboard functionalities, an
 This is the front-end of the java application that you can find in this URL: https://github.com/Javier070/Dockerized-ProductManager-Spring-JPA-JWT_Auth
 
 
+
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (for development and running the project locally)
+- [Visual Studio Code](https://code.visualstudio.com/)  with the Live Server extension 
+    - [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+### Installation
+
+Clone the frontend repository:
+    ```
+    git clone https://github.com/Javier070/ProductManager-Frontend.git
+    ```
+
+
+ ### Running the Application
+
+1. Start the frontend server (using Live Server extension in Visual Studio Code):
+    - Open the `ProductManager-Frontend` directory in Visual Studio Code.
+    - Right-click on `Inicio/login/login.html` and select "Open with Live Server".
+
+2. Access the complete application at:
+    ```
+    http://127.0.0.1:5500/Inicio/login/login.html
+    ```
+
+
+### Application Images
+
+Here are some screenshots of the application:
+
+#### Login Page
+![Login Page](img/login-img.png)
+
+#### Registration Page
+![Registration Page](img/register-img.png)
+
+#### Category Management
+![Category Management](img/categoria-img.png)
+
+
+
+#### Product Management
+![Product Management](img/producto-img.png)
+
+#### Product Management With Sidenav Hidden
+![Product Details](img/producto2-img.png)
+
+#### Dashboard Graphs
+![Dashboard Graphs](img/gráfico-img.png)
+
+
 ## Project Structure
 
 - **Inicio/login/**: Contains files related to the login and registration functionality.
@@ -32,39 +87,14 @@ This is the front-end of the java application that you can find in this URL: htt
     - `manejoUser.css`: CSS for user management.
     - `manejoUser.html`: HTML for user management.
     - `manejoUser.js`: JavaScript for user management.
+  - **img/**: Contains images related to the project.
 
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (for development and running the project locally)
-- [Visual Studio Code](https://code.visualstudio.com/)  with the Live Server extension 
-    - [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-
-### Installation
-
-Clone the frontend repository:
-    ```sh
-    git clone https://github.com/Javier070/ProductManager-Frontend.git
-    ```
-
-
- ### Running the Application
-
-1. Start the frontend server (using Live Server extension in Visual Studio Code):
-    - Open the `ProductManager-Frontend` directory in Visual Studio Code.
-    - Right-click on `Inicio/login/login.html` and select "Open with Live Server".
-
-2. Access the complete application at:
-    ```
-    http://127.0.0.1:5500/Inicio/login/login.html
-    ```
-
-### Contributing
+## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
 
 
-### Acknowledgements
+## Acknowledgements
 
 - Thanks to everyone who contributed to this project.
+
